@@ -5,7 +5,7 @@ let connection = mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'',
-    database:'cumc-inventory'
+    database:'cumc_inventory'
 });
 
 connection.connect(function(error){
