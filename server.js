@@ -3,10 +3,12 @@ let app = express();
 let bodyparser = require('body-parser');
 
 //routes
-let userroute = require('./routes/userRoute');
+let itemRoute = require('./routes/itemRoute');
+let eventRoute = require('./routes/eventRoute');
 
 app.use(bodyparser.urlencoded({ extended: false }))
 
-app.use('/user',userroute);
+app.use('/item',itemRoute);
+app.use('/event',eventRoute);
 
 app.listen(3000,()=>console.log('node server is working'));
