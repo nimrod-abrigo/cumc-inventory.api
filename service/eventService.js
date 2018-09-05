@@ -20,7 +20,6 @@ let getEventInfo = function(event_id){
 
 let addEvent = function(postData){
     return new Promise(function(resolve,reject){
-        let postValue = [postData.event_name,postData.start_date,postData.end_date,postData.event_remarks]
         connection.query("INSERT INTO event SET ?"
         , [postData]
         , function(err, result) {
