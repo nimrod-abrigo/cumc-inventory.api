@@ -6,6 +6,7 @@ let bodyparser = require('body-parser');
 let itemRoute = require('./routes/itemRoute');
 let eventRoute = require('./routes/eventRoute');
 
+app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }))
 
 app.use('/item',itemRoute);
