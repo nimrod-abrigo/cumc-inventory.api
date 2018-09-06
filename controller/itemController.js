@@ -40,3 +40,52 @@ module.exports.deleteItem = async(req,res) => {
 
     res.send(deleteResult);
 }
+
+module.exports.deletePart = async(req,res) => {
+    const part_id = req.params.id;
+
+    let deleteResult = await partsService.deletePartbyPartId(part_id);
+
+    res.send(deleteResult);
+}
+
+module.exports.editItem = async(req,res) => {
+    const putData = req.body;
+    const item_id = req.params.id;
+
+    let editResult = await itemService.editItem(item_id,putData);
+
+    res.send(editResult);
+}
+
+module.exports.editPart = async(req,res) => {
+    const putData = req.body;
+    const part_id = req.params.id;
+
+    let editResult = await partsService.editPart(part_id,putData);
+}
+
+module.exports.addParts = async(req,res) => {
+    const postData = req.body;
+    const item_id = req.params.id;
+
+    let insertPartsResult = await partsService.addParts(postData,item_id);
+
+    res.send(insertPartsResult);
+}
+
+module.exports.getItemInfo = async(req,res) => {
+    const item_id = req.params.id;
+    
+    let result = {};
+    result.item = {};
+    result.parts = {};
+
+    let getItemResult = await itemService.getItemInfo(item_id);
+    let getPartsResult = await partsService.getPartByItemId(item_id);
+
+    result.item = getItemResult;
+    result.parts = getPartsResult;
+
+    res.send(result);
+}

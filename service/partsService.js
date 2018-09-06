@@ -25,7 +25,7 @@ let deletePartsbyItemId = function(item_id){
     });
 }
 
-let deletePart = function(part_id){
+let deletePartbyPartId = function(part_id){
     return new Promise(function(resolve,reject){
         connection.query("DELETE FROM item_part WHERE part_id = ?",[item_id],function(err,rows,fields){
             if(err) return reject(err);
@@ -43,7 +43,18 @@ let editPart = function(part_id,putData){
     });
 }
 
+let getPartByItemId = function (item_id){
+    let sql = "SELECT * FROM item_part WHERE item_id = ?";
+    return new Promise(function(resolve,reject){
+        connection.query(sql,[item_id],function(err,rows,fields){
+            if(err) return reject(err);
+            return resolve(rows);
+        });
+    });
+}
+
 module.exports.addParts = addParts;
 module.exports.deletePartsbyItemId = deletePartsbyItemId;
-module.exports.deletePart = deletePart;
+module.exports.deletePartbyPartId = deletePartbyPartId;
 module.exports.editPart = editPart;
+module.exports.getPartByItemId = getPartByItemId;
