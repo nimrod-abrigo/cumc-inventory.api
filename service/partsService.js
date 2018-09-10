@@ -27,7 +27,7 @@ let deletePartsbyItemId = function(item_id){
 
 let deletePartbyPartId = function(part_id){
     return new Promise(function(resolve,reject){
-        connection.query("DELETE FROM item_part WHERE part_id = ?",[item_id],function(err,rows,fields){
+        connection.query("DELETE FROM item_part WHERE part_id = ?",[part_id],function(err,rows,fields){
             if(err) return reject(err);
             return resolve(rows);
         });
