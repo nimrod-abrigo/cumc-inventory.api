@@ -63,6 +63,8 @@ module.exports.editPart = async(req,res) => {
     const part_id = req.params.id;
 
     let editResult = await partsService.editPart(part_id,putData);
+
+    res.send(editResult);
 }
 
 module.exports.addParts = async(req,res) => {
