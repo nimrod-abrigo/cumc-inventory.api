@@ -80,14 +80,16 @@ module.exports.getItemInfo = async(req,res) => {
     const item_id = req.params.id;
     
     let result = {};
-    result.item = {};
-    result.parts = {};
 
     let getItemResult = await itemService.getItemInfo(item_id);
     let getPartsResult = await partsService.getPartByItemId(item_id);
 
-    result.item = getItemResult;
-    result.parts = getPartsResult;
+    result = getItemResult.map(
+        (getItemResult)=>{
+            getItemResult.parts=getPartsResult;
+            return getItemResult;
+        }
+    )
 
     res.send(result);
 }
