@@ -95,6 +95,7 @@ module.exports.getItemInfo = async(req,res) => {
 }
 
 module.exports.getItems = async(req,res) => {
-    let getItemsResult = await itemService.getItems();
+    const category_id = req.params.id;
+    let getItemsResult = await itemService.getItemsByCategory(category_id);
     res.send(getItemsResult);
 }

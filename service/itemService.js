@@ -39,9 +39,9 @@ let getItemInfo = function(item_id){
     });
 }
 
-let getItems = function(){
+let getItemsByCategory = function(category_id){
     return new Promise(function(resolve,reject){
-        connection.query("SELECT * FROM items",function(err,rows,fields){
+        connection.query("SELECT * FROM items WHERE category_id = ?",[category_id],function(err,rows,fields){
             if(err) return reject(err);
             return resolve(rows);
         });
@@ -52,4 +52,4 @@ module.exports.addItem = addItem;
 module.exports.deleteItem = deleteItem;
 module.exports.editItem = editItem;
 module.exports.getItemInfo = getItemInfo;
-module.exports.getItems = getItems;
+module.exports.getItemsByCategory = getItemsByCategory;
