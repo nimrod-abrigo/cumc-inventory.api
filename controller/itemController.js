@@ -93,3 +93,8 @@ module.exports.getItemInfo = async(req,res) => {
 
     res.send(result);
 }
+
+module.exports.getItems = async(req,res) => {
+    let getItemsResult = await itemService.getItems();
+    res.send(getItemsResult);
+}

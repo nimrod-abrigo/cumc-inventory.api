@@ -9,6 +9,7 @@ router.put('/part/:id',itemController.editPart);
 router.delete('/:id',itemController.deleteItem);
 router.delete('/part/:id',itemController.deletePart);
 router.get('/:id',itemController.getItemInfo);
+router.get('',itemController.getItems);
 
 module.exports = router;
 

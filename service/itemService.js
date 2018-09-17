@@ -39,7 +39,17 @@ let getItemInfo = function(item_id){
     });
 }
 
+let getItems = function(){
+    return new Promise(function(resolve,reject){
+        connection.query("SELECT * FROM items",function(err,rows,fields){
+            if(err) return reject(err);
+            return resolve(rows);
+        });
+    });
+}
+
 module.exports.addItem = addItem;
 module.exports.deleteItem = deleteItem;
 module.exports.editItem = editItem;
 module.exports.getItemInfo = getItemInfo;
+module.exports.getItems = getItems;
