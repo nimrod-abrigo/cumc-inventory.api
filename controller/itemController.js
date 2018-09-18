@@ -19,7 +19,7 @@ module.exports.addItem = async (req,res) => {
     let insertItemResult = await itemService.addItem(itemInfo);
     insertResult.item = insertItemResult;
     
-    if(partsInfo != null){
+    if(partsInfo != ''){
         let insertPartsResult = await partsService.addParts(partsInfo, insertItemResult.insertId);
         insertResult.parts = insertPartsResult;
     }
