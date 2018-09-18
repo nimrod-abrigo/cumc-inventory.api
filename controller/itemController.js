@@ -17,10 +17,12 @@ module.exports.addItem = async (req,res) => {
     let partsInfo = postData.parts;
 
     let insertItemResult = await itemService.addItem(itemInfo);
-    let insertPartsResult = await partsService.addParts(partsInfo, insertItemResult.insertId);
-    
     insertResult.item = insertItemResult;
-    insertResult.parts = insertPartsResult;
+    
+    if(partsInfo != null){
+        let insertPartsResult = await partsService.addParts(partsInfo, insertItemResult.insertId);
+        insertResult.parts = insertPartsResult;
+    }
 
     res.send(insertResult);
 }
