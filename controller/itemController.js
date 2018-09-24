@@ -11,8 +11,9 @@ module.exports.addItem = async (req,res) => {
         item_name : postData.item_name,
         item_description: postData.item_description,
         number_total: postData.number_total,
-        number_available: postData.number_available,
-        category_id: postData.category_id
+        //number_available: postData.number_total,
+        category_id: postData.category_id,
+        created_date: new Date()
     }
     let partsInfo = postData.parts;
 
