@@ -18,6 +18,20 @@ let getEventInfo = function(event_id){
     });
 }
 
+let getEventItem = function(event_id){
+    let sql = 'SELECT * FROM item_logs as log'; 
+    sql += ' JOIN items as item on (item.item_id = log.item_id)'
+    sql += ' WHERE log.log_id in ('
+    sql += ' SELECT MAX(log_id) from item_logs'
+    sql += ' WHERE event_id = ? GROUP BY item_id)';
+    return new Promise(function(resolve,reject){
+        connection.query(sql, [event_id], function(err, rows, fields){
+            if (err) return reject(err);
+            return resolve(rows);
+        });
+    });
+}
+
 let addEvent = function(postData){
     return new Promise(function(resolve,reject){
         connection.query("INSERT INTO event SET ?"
@@ -49,6 +63,7 @@ let deleteEvent = function(event_id){
 
 module.exports.getEvents = getEvents;
 module.exports.getEventInfo = getEventInfo;
+module.exports.getEventItem = getEventItem;
 module.exports.addEvent = addEvent;
 module.exports.updateEvent = updateEvent;
 module.exports.deleteEvent = deleteEvent;

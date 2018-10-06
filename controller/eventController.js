@@ -3,7 +3,15 @@ let eventService = require('../service/eventService');
 module.exports.getEventInfo = async (req,res) => {
     let eventid = req.params.id;
     let eventInfo = await eventService.getEventInfo(eventid);
-    res.send(eventInfo);
+    let eventItem = await eventService.getEventItem(eventid);
+    let result = {};
+    result = eventInfo.map(
+        (eventInfo)=>{
+            eventInfo.items = eventItem;
+            return eventInfo;
+        }
+    )
+    res.send(result);
 };
 
 module.exports.getEvents = async (req,res) => {
