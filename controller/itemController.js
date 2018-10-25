@@ -11,9 +11,9 @@ module.exports.addItem = async (req,res) => {
         item_name : postData.item_name,
         item_description: postData.item_description,
         number_total: postData.number_total,
-        //number_available: postData.number_total,
+        number_available: postData.number_total,
         category_id: postData.category_id,
-        created_date: new Date()
+        //created_date: new Date()
     }
     let partsInfo = postData.parts;
 
@@ -98,7 +98,6 @@ module.exports.getItemInfo = async(req,res) => {
 }
 
 module.exports.getItems = async(req,res) => {
-    const category_id = req.params.id;
-    let getItemsResult = await itemService.getItemsByCategory(category_id);
+    let getItemsResult = await itemService.getItems();
     res.send(getItemsResult);
 }

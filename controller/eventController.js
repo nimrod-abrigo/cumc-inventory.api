@@ -37,3 +37,9 @@ module.exports.deleteEvent = async (req,res) => {
     let deleteResult = await eventService.deleteEvent(event_id);
     res.send(deleteResult);
 }
+
+module.exports.getEventItemStatus = async(req,res) => {
+    const event_id = req.params.id;
+    let eventItemStatusResult = await eventService.getEventItem(event_id);
+    res.send(eventItemStatusResult);
+}
